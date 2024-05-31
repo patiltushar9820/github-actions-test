@@ -15,3 +15,5 @@
 
        - name: Say Hello to the World
          run: echo "Hello, World!"
+       - name: Run Python file
+         run: python ./test.py
