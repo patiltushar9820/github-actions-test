@@ -6,24 +6,48 @@
        - KAN-1-setup-github-actions
 
  jobs:
-   build:
-     runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: Get Your Code
-         uses: actions/checkout@v2
+    steps:
+      - name: Get Your Code
+        uses: actions/checkout@v2
 
-       - name: Say Hello to the World
-         run: echo "Hello, World!"
+      - name: Say Hello to the World
+        run: echo "Hello, World!"
 
-       - uses: trstringer/manual-approval@v1
-         with:
-          secret: ${{ github.TOKEN }}
-          approvers: patiltushar9820
-          minimum-approvals: 1
-          issue-title: "Deploying v1.0.0 to main"
-          issue-body: "Review the terraform plan, then approve or deny the deployment of v1.0.0 to main."
-          exclude-workflow-initiator-as-approver: false
+      ## This is code to add auto approver for run or code deployment
+      #  - uses: trstringer/manual-approval@v1
+      #    with:
+      #     secret: ${{ github.TOKEN }}
+      #     approvers: patiltushar9820
+      #     minimum-approvals: 1
+      #     issue-title: "Deploying v1.0.0 to main"
+      #     issue-body: "Review the terraform plan, then approve or deny the deployment of v1.0.0 to main."
+      #     exclude-workflow-initiator-as-approver: false
 
-       - name: Run Python file
-         run: python ./test.py
+       
+      - name: Run Python file
+        run: python ./test.py
+
+  main-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Your Code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Reset main branch
+        run: |
+          git fetch origin KAN-1-setup-github-actions:KAN-1-setup-github-actions
+          git reset --hard KAN-1-setup-github-actions
+
+      - name: Create Pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: main
+
+
+       
