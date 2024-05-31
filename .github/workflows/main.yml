@@ -17,7 +17,7 @@
          run: echo "Hello, World!"
 
        - uses: trstringer/manual-approval@v1
-        with:
+         with:
           secret: ${{ github.TOKEN }}
           approvers: patiltushar9820
           minimum-approvals: 1
