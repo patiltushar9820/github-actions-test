@@ -37,7 +37,7 @@
       - name: Get Your Code
         uses: actions/checkout@v2
         with:
-          ref: KAN-1-setup-github-actions
+          ref: main
 
       - name: Reset master branch
         run: |
