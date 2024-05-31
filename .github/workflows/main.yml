@@ -37,9 +37,9 @@
       - name: Get Your Code
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: KAN-1-setup-github-actions
 
-      - name: Reset main branch
+      - name: Reset master branch
         run: |
           git fetch origin KAN-1-setup-github-actions:KAN-1-setup-github-actions
           git reset --hard KAN-1-setup-github-actions
@@ -47,7 +47,7 @@
       - name: Create Pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: main
+          branch: master
 
 
        
