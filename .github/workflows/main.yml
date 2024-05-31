@@ -37,7 +37,7 @@
       - name: Get Your Code
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: master
 
       - name: Reset master branch
         run: |
@@ -47,7 +47,7 @@
       - name: Create Pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: master
+          branch: main
 
 
        
